@@ -1,11 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const TodoItem = props => {
+// actions
+import { markTodoCompleted } from "../actions";
+
+const TodoItem = ({ markTodoCompleted, todo }) => {
   return (
     <>
-      <p>{props.todo.title}</p>
+      <p onClick={() => markTodoCompleted(todo)}>{todo.title}</p>
     </>
   );
 };
 
-export default TodoItem;
+export default connect(
+  null,
+  { markTodoCompleted }
+)(TodoItem);
