@@ -1,21 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
 
+// components
 import TodoItem from "./TodoItem";
+import CompletedTodos from "./CompletedTodos/CompletedTodos";
 
-const DisplayTodos = props => {
+const DisplayTodos = ({ todos }) => {
   return (
     <div>
-      {props.todos.map(todo => {
-        return <TodoItem key={todo.id} todo={todo} />;
-      })}
+      <div>
+        {todos.length > 0
+          ? todos.map(todo => {
+              return <TodoItem key={todo.id} todo={todo} />;
+            })
+          : "You currently have no items in your todo list."}
+      </div>
+      <CompletedTodos />
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    todos: state.todos.todo
   };
 };
 
