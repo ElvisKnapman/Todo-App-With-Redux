@@ -1,15 +1,24 @@
 import React from "react";
 import "./App.css";
 
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 // components
-import Test from "./components/Test";
 import AddTodo from "./components/AddTodo";
 import DisplayTodos from "./components/DisplayTodos";
+import Home from "./components/Home";
 
 function App() {
   return (
+    // <Router>
+    //   <div className="App">
+    //     <Route path="/" component={Home} />
+    //     <Route path="/add" component={AddTodo} />
+    //     <Route path="/view" component={DisplayTodos} />
+    //   </div>
+    // </Router>
     <div className="App">
-      <Test />
+      <Home />
       <AddTodo />
       <DisplayTodos />
     </div>
