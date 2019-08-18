@@ -1,26 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
 // actions
 import { addNewTodo } from "../actions";
 
 // Material UI
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 
-const styles = {
-  input: {
-    fontSize: "2rem"
+const useStyles = makeStyles(theme => ({
+  inputElement: {
+    fontSize: "2.5rem"
   },
 
-  label: {
-    fontSize: "2rem"
+  inputLabel: {
+    fontSize: "1.7rem"
+  },
+
+  formControl: {
+    margin: theme.spacing(1)
   }
-};
+}));
 
 const AddTodo = props => {
+  const classes = useStyles();
+  const [labelWidth, setLabelWidth] = useState(0);
+  const labelRef = useRef(null);
   const [todoText, setTodoText] = useState("");
+
+  useEffect(() => {
+    setLabelWidth(labelRef.current.offsetWidth);
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -33,16 +46,23 @@ const AddTodo = props => {
       <h1>Todo List</h1>
       <form onSubmit={handleSubmit}>
         <div className="todo-text-field">
-          <TextField
-            fullWidth
-            label="New Todo"
-            InputProps={{ style: styles.input }}
-            InputLabelProps={{ style: styles.label }}
-            type="text"
-            name="todo"
-            onChange={e => setTodoText(e.target.value)}
-            value={todoText}
-          />
+          <FormControl variant="outlined">
+            <InputLabel
+              classes={{ root: classes.inputLabel }}
+              ref={labelRef}
+              htmlFor="component-outlined"
+            >
+              Add Todo
+            </InputLabel>
+            <OutlinedInput
+              classes={{ input: classes.inputElement }}
+              name="todo"
+              id="component-outlined"
+              onChange={e => setTodoText(e.target.value)}
+              value={todoText}
+              labelWidth={labelWidth}
+            />
+          </FormControl>
         </div>
         <div>
           <Button
