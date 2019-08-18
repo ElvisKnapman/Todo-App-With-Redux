@@ -1,27 +1,40 @@
 import React from "react";
-import "./App.css";
-
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-// components
+// CSS
+import "./css/index.css";
+
+// Components
 import AddTodo from "./components/AddTodo";
 import DisplayTodos from "./components/DisplayTodos";
-import Home from "./components/Home";
+import DisplayCompletedTodos from "./components/CompletedTodos/DisplayCompletedTodos";
+
+// Material UI
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#39C"
+    },
+    secondary: {
+      main: "#000"
+    }
+  }
+});
 
 function App() {
   return (
-    // <Router>
-    //   <div className="App">
-    //     <Route path="/" component={Home} />
-    //     <Route path="/add" component={AddTodo} />
-    //     <Route path="/view" component={DisplayTodos} />
-    //   </div>
-    // </Router>
-    <div className="App">
-      <Home />
-      <AddTodo />
-      <DisplayTodos />
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <div className="app-container">
+        <div className="add-todo-container">
+          <AddTodo />
+        </div>
+        <div className="flex-divide-containers">
+          <DisplayTodos />
+          <DisplayCompletedTodos />
+        </div>
+      </div>
+    </MuiThemeProvider>
   );
 }
 
