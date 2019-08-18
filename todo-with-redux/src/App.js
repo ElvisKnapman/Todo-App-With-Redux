@@ -10,7 +10,13 @@ import DisplayTodos from "./components/DisplayTodos";
 import DisplayCompletedTodos from "./components/CompletedTodos/DisplayCompletedTodos";
 
 // Material UI
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import {
+  createMuiTheme,
+  MuiThemeProvider,
+  makeStyles
+} from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -19,20 +25,34 @@ const theme = createMuiTheme({
     secondary: {
       main: "#000"
     }
-  }
+  },
+  spacing: 10
 });
 
+const useStyles = makeStyles(theme => ({
+  container: {
+    marginTop: "5rem"
+  }
+}));
+
 function App() {
+  const classes = useStyles();
   return (
     <MuiThemeProvider theme={theme}>
       <div className="app-container">
         <div className="add-todo-container">
           <AddTodo />
         </div>
-        <div className="flex-divide-containers">
-          <DisplayTodos />
-          <DisplayCompletedTodos />
-        </div>
+        <Container classes={{ root: classes.container }} maxWidth="md">
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <DisplayTodos />
+            </Grid>
+            <Grid item xs={6}>
+              <DisplayCompletedTodos />
+            </Grid>
+          </Grid>
+        </Container>
       </div>
     </MuiThemeProvider>
   );
