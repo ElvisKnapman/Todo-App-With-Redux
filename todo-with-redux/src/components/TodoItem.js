@@ -5,11 +5,7 @@ import { connect } from "react-redux";
 import { markTodoCompleted } from "../actions";
 
 const TodoItem = ({ markTodoCompleted, todo }) => {
-  return (
-    <>
-      <p onClick={() => markTodoCompleted(todo)}>{todo.title}</p>
-    </>
-  );
+  return <p onClick={() => markTodoCompleted(todo)}>{todo.title}</p>;
 };
 
 export default connect(
