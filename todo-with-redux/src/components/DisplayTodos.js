@@ -30,11 +30,13 @@ const DisplayTodos = ({ todos }) => {
           Todo
         </Typography>
       </Paper>
-      {todos.length > 0
-        ? todos.map(todo => {
-            return <TodoItem key={todo.id} todo={todo} />;
-          })
-        : "You currently have no items in your todo list."}
+      {todos.length > 0 ? (
+        todos.map(todo => {
+          return <TodoItem key={todo.id} todo={todo} />;
+        })
+      ) : (
+        <p>You currently have no items in your todo list.</p>
+      )}
     </>
   );
 };
