@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // CSS
 import "./css/index.css";
 
+// Moment
+import Moment from "react-moment";
+
 // Components
 import AddTodo from "./components/AddTodo";
 import DisplayTodos from "./components/DisplayTodos";
@@ -34,6 +37,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: "5rem"
   }
 }));
+
+Moment.startPooledTimer(30000);
 
 function App() {
   const classes = useStyles();
