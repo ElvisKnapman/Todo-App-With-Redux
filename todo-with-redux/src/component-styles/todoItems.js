@@ -1,0 +1,23 @@
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  card: {
+    marginTop: "3rem",
+    padding: "1rem",
+    minWidth: 275
+  },
+  title: {
+    fontSize: "1.8rem",
+    borderBottom: "1px dashed #000"
+  },
+  pos: {
+    fontSize: "1.4rem"
+  },
+  cardContent: {
+    "&:last-child": {
+      paddingBottom: "1.6rem"
+    }
+  }
+}));
+
+export default useStyles;
