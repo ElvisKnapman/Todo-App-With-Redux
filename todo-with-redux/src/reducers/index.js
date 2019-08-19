@@ -1,13 +1,17 @@
 // action types
 import { ADD_TODO, MARK_TODO_COMPLETED } from "../actions";
 
+// moment for timestamp
+import moment from "moment";
+
 const initialState = {
-  title: "Todo App w/ Redux!",
+  ids: 1,
   todos: [
     {
       title: "make todo list using Redux",
       completed: false,
-      id: 1
+      id: 1,
+      createdAt: "2019-08-18T21:10:15.956Z"
     }
   ]
 };
@@ -17,9 +21,15 @@ export const todoReducer = (state = initialState, action) => {
     case ADD_TODO:
       return {
         ...state,
+        ids: state.id + 1,
         todos: [
           ...state.todos,
-          { title: action.payload, completed: false, id: Date.now() }
+          {
+            title: action.payload,
+            completed: false,
+            id: state.ids + 1,
+            createdAt: moment()
+          }
         ]
       };
 
