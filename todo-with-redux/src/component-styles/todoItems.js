@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
   card: {
     marginTop: "3rem",
-    padding: "1rem",
+    padding: "0",
     minWidth: 275
   },
   title: {
@@ -17,6 +17,12 @@ const useStyles = makeStyles(theme => ({
     "&:last-child": {
       paddingBottom: "1.6rem"
     }
+  },
+
+  icon: {
+    transition: "all 0.2s",
+    fontSize: "1.8rem",
+    color: "#000"
   }
 }));
 
