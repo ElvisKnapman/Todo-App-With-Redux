@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // CSS
-import "./css/index.css";
+import "./sass/index.scss";
 
 // Moment
 import Moment from "react-moment";
