@@ -24,7 +24,7 @@ const CompletedToDoItem = ({ todo }) => {
             {todo.title}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            Created: <Moment fromNow>{todo.createdAt}</Moment>
+            Completed: <Moment fromNow>{todo.completedAt}</Moment>
           </Typography>
         </CardContent>
       </Card>
