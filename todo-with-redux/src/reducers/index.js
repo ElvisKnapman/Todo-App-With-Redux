@@ -5,13 +5,13 @@ import { ADD_TODO, MARK_TODO_COMPLETED } from "../actions";
 import moment from "moment";
 
 const initialState = {
-  ids: 1,
   todos: [
     {
       title: "make todo list using Redux",
       completed: false,
       id: 1,
-      createdAt: "2019-08-18T21:10:15.956Z"
+      createdAt: "2019-08-18T21:10:15.956Z",
+      completedAt: ""
     }
   ]
 };
@@ -21,13 +21,12 @@ export const todoReducer = (state = initialState, action) => {
     case ADD_TODO:
       return {
         ...state,
-        ids: state.id + 1,
         todos: [
           ...state.todos,
           {
             title: action.payload,
             completed: false,
-            id: state.ids + 1,
+            id: Date.now(),
             createdAt: moment()
           }
         ]
@@ -38,7 +37,7 @@ export const todoReducer = (state = initialState, action) => {
         ...state,
         todos: state.todos.map(todo => {
           if (todo.id === action.payload.id) {
-            return { ...todo, completed: true };
+            return { ...todo, completed: true, completedAt: moment() };
           }
           return todo;
         })
