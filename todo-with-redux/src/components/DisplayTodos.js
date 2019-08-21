@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
-// Material UI useStyles
-// import useStyles from "../material/styles";
-
 // components
 import TodoItem from "./TodoItem";
 import { makeStyles } from "@material-ui/core/styles";
