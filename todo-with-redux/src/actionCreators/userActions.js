@@ -12,7 +12,7 @@ export const FETCH_TODOS_START = "FETCH_TODOS_START";
 export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
 export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
 
-export const registerUser = user => async dispatch => {
+export const registerUser = (user, history) => async dispatch => {
   dispatch({ type: REGISTER_USER_START });
 
   try {
@@ -21,6 +21,7 @@ export const registerUser = user => async dispatch => {
       user
     );
     dispatch({ type: REGISTER_USER_SUCCESS, payload: result });
+    history.push("/");
   } catch (err) {
     console.log(err);
     dispatch({ type: REGISTER_USER_FAILURE });

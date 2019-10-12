@@ -1,0 +1,83 @@
+.create-account-heading {
+  margin: 0 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgb(218, 218, 218);
+}
+
+.error-message {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: rgb(179, 20, 20);
+  border-radius: 3px;
+  color: #fff;
+  text-align: center;
+}
+
+.reg-form-wrapper {
+  max-width: 500px;
+  width: 100%;
+  margin: 5rem auto 0;
+  border: 1px solid rgb(179, 179, 179);
+  border-radius: 6px;
+  padding: 5rem;
+  background-color: #fff;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1), 0 2px 7px rgba(0, 0, 0, 0.19);
+
+  .input-field-label {
+    margin: 2rem 0 0.7rem;
+  }
+
+  .firstName-lastName-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    outline: none;
+    border: none;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 3px;
+    padding: 1rem;
+    font-weight: 500;
+    transition: 0.2s border;
+
+    &:focus {
+      border-color: #39c;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.17);
+    }
+  }
+
+  .register-btn-container {
+    margin-top: 5rem;
+    text-align: center;
+  }
+}
+
+.btn {
+  padding: 1.3rem 1.5rem;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+
+  &.register-btn {
+    border: 1px solid #39c;
+    background-color: #39c;
+    color: #fff;
+    transition: 0.2s all;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 1.4rem;
+    &:hover {
+      background-color: transparent;
+      color: #39c;
+    }
+  }
+}
+
+.dark-icon {
+  color: #000;
+}
