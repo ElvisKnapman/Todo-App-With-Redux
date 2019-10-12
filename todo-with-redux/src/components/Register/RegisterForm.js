@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 // action creators
 import { registerUser } from "../../actionCreators/userActions";
 
-const RegisterForm = ({ registerUser }) => {
+const RegisterForm = props => {
+  const { registerUser, history } = props;
+
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -14,6 +19,7 @@ const RegisterForm = ({ registerUser }) => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [createAccountClicked, setCreateAccountClicked] = useState(false);
 
   const handleChange = e => {
     setUser({
@@ -39,10 +45,12 @@ const RegisterForm = ({ registerUser }) => {
     if (!isValid) {
       setErrorMessage("All fields are required. Please try again.");
     } else {
+      setCreateAccountClicked(true);
       // call action creator
-      registerUser(user);
+      registerUser(user, history);
     }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -112,9 +120,18 @@ const RegisterForm = ({ registerUser }) => {
             </div>
             <div className="btns">
               <div className="register-btn-container">
-                <button class="btn register-btn" type="submit">
-                  Create My Account
-                </button>
+                {!createAccountClicked ? (
+                  <button class="btn register-btn" type="submit">
+                    Create My Account
+                  </button>
+                ) : (
+                  <FontAwesomeIcon
+                    className="dark-icon"
+                    icon={faSpinner}
+                    spin
+                    size="2x"
+                  />
+                )}
               </div>
             </div>
           </div>
