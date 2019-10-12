@@ -7,12 +7,14 @@ html {
 
 * {
   box-sizing: border-box;
+  font-family: "Roboto";
   // border: 1px solid black;
 }
 
 body {
   background: linear-gradient(to bottom, #39c, #fff);
   min-height: 100vh;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
