@@ -121,7 +121,7 @@ const RegisterForm = props => {
             <div className="btns">
               <div className="register-btn-container">
                 {!createAccountClicked ? (
-                  <button class="btn register-btn" type="submit">
+                  <button className="btn register-btn" type="submit">
                     Create My Account
                   </button>
                 ) : (
