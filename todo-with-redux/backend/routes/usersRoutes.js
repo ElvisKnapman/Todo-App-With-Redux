@@ -30,6 +30,7 @@ router.post("/login", async (req, res) => {
       res.status(200).json({
         message: `Welcome, ${user.firstName}`,
         user: {
+          id: user.id,
           username: user.username,
           firstName: user.firstName,
           lastName: user.lastName,
@@ -52,7 +53,9 @@ function generateToken(user) {
   const payload = {
     id: user.id,
     username: user.username,
-    firstName: user.firstName
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email
   };
 
   const options = {
