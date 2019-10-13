@@ -11,6 +11,7 @@ import Moment from "react-moment";
 import RegisterForm from "./components/Register/RegisterForm";
 import LoginForm from "./components/Login/LoginForm";
 import UserHomepage from "./components/UserHomepage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 Moment.startPooledTimer(30000);
 
@@ -21,7 +22,11 @@ function App() {
         <Route path="/register" component={RegisterForm} />
         <Route path="/login" component={LoginForm} />
 
-        <Route path="/home" component={UserHomepage} />
+        <ProtectedRoute
+          path="/home"
+          redirect="/login"
+          component={UserHomepage}
+        />
       </Switch>
     </Router>
   );
