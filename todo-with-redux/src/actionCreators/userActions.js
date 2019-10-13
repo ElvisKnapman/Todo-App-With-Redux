@@ -21,21 +21,25 @@ export const registerUser = (user, history) => async dispatch => {
       user
     );
     dispatch({ type: REGISTER_USER_SUCCESS, payload: result });
-    history.push("/");
+    // redirect user to login page after successfully registering
+    history.push("/login");
   } catch (err) {
     console.log(err);
     dispatch({ type: REGISTER_USER_FAILURE });
   }
 };
 
-export const loginUser = credentials => async dispatch => {
+export const loginUser = (credentials, history) => async dispatch => {
+  dispatch({ type: LOGIN_USER_START });
   try {
     const result = await axios.post(
       "http://localhost:9100/api/users/login",
       credentials
     );
-
-    dispatch({ type: LOGIN_USER_SUCCESS, payload: result });
+    console.log("LOG IN RESULT", result);
+    dispatch({ type: LOGIN_USER_SUCCESS, payload: result.data.user });
+    // redirect user to their home page after successfully logging in
+    history.push("/home");
   } catch (err) {
     console.log(err);
     dispatch({ type: LOGIN_USER_FAILURE });
