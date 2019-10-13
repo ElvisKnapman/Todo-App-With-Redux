@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // Components
 import AddTodo from "./AddTodo";
 import DisplayTodos from "./DisplayTodos";
 import DisplayCompletedTodos from "./CompletedTodos/DisplayCompletedTodos";
+
+// action creators
+import { fetchUserTodos } from "../actionCreators/userActions";
 
 // Material UI
 import {
@@ -33,7 +36,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UserHomepage = props => {
+  const { id, username, firstName, lastName, email, token } = props.user;
+  const { fetchUserTodos } = props;
   const classes = useStyles();
+
+  useEffect(() => {
+    console.log("in use effect");
+    fetchUserTodos(id, token);
+  }, [id]);
+
   console.log("PROPS", props);
 
   return (
@@ -41,6 +52,7 @@ const UserHomepage = props => {
       <MuiThemeProvider theme={theme}>
         <div className="app-container">
           <div className="add-todo-container">
+            <h1>Todo List for {firstName}</h1>
             <AddTodo />
           </div>
           <Container classes={{ root: classes.container }} maxWidth="md">
@@ -68,5 +80,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { fetchUserTodos }
 )(UserHomepage);
