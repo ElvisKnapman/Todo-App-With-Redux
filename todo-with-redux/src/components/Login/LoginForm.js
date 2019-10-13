@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 // actions creators
-import { loginUser } from "../../actionCreators/userActions";
+import { loginUser } from "../../actions/userActions";
 
 const LoginForm = props => {
   const { loginUser, history } = props;

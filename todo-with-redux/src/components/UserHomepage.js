@@ -7,7 +7,7 @@ import DisplayTodos from "./DisplayTodos";
 import DisplayCompletedTodos from "./CompletedTodos/DisplayCompletedTodos";
 
 // action creators
-import { fetchUserTodos } from "../actionCreators/userActions";
+import { fetchUserTodos } from "../actions/userActions";
 
 // Material UI
 import {

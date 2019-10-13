@@ -2,7 +2,7 @@ import {
   REGISTER_USER_START,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILURE
-} from "../actionCreators/userActions";
+} from "../actions/userActions";
 
 const initialState = {
   isRegistering: false,

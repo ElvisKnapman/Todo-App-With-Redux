@@ -3,7 +3,7 @@ import {
   ADD_TODO_START,
   ADD_TODO_SUCCESS,
   ADD_TODO_FAILURE
-} from "../actionCreators/addTodo";
+} from "../actions/todoActions";
 
 // moment for timestamp
 import moment from "moment";

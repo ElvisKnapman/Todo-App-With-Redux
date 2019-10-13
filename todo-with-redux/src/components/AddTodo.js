@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
 // actions
-import { addNewTodo } from "../actionCreators/addTodo";
-import { fetchUserTodos } from "../actionCreators/userActions";
+import { addNewTodo } from "../actions/todoActions";
+import { fetchUserTodos } from "../actions/userActions";
 
 // Material UI
 import FormControl from "@material-ui/core/FormControl";

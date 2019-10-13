@@ -5,7 +5,7 @@ import {
   FETCH_TODOS_START,
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE
-} from "../actionCreators/userActions";
+} from "../actions/userActions";
 
 const initialState = {
   userAccount: {},
