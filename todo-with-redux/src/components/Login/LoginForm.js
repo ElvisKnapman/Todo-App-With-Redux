@@ -84,7 +84,7 @@ const LoginForm = props => {
             <div className="btns">
               <div className="login-btn-container">
                 {!loginClicked ? (
-                  <button class="btn login-btn" type="submit">
+                  <button className="btn login-btn" type="submit">
                     Login
                   </button>
                 ) : (

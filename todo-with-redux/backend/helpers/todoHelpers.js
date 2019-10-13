@@ -18,7 +18,13 @@ function findByUser(id) {
   return db("todos")
     .join("users", "users.id", "todos.user_id")
     .where({ "users.id": id })
-    .select("todos.id", "todos.todo", "todos.created_at", "todos.updated_at");
+    .select(
+      "todos.id",
+      "todos.title",
+      "todos.completed",
+      "todos.created_at",
+      "todos.updated_at"
+    );
 }
 
 module.exports = {

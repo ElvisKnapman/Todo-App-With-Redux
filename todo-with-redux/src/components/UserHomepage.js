@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 const UserHomepage = props => {
   const { id, username, firstName, lastName, email, token } = props.user;
-  const { fetchUserTodos } = props;
+  const { todos, fetchUserTodos } = props;
   const classes = useStyles();
 
   useEffect(() => {
@@ -53,12 +53,12 @@ const UserHomepage = props => {
         <div className="app-container">
           <div className="add-todo-container">
             <h1>Todo List for {firstName}</h1>
-            <AddTodo />
+            <AddTodo userID={id} token={token} />
           </div>
           <Container classes={{ root: classes.container }} maxWidth="md">
             <Grid container spacing={4}>
               <Grid item xs={6}>
-                <DisplayTodos />
+                <DisplayTodos todos={todos} />
               </Grid>
               <Grid item xs={6}>
                 <DisplayCompletedTodos />

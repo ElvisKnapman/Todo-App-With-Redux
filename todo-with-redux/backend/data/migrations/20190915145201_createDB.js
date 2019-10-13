@@ -19,7 +19,7 @@ exports.up = function(knex) {
     })
     .createTable("todos", tbl => {
       tbl.increments();
-      tbl.string("todo", 255).notNullable();
+      tbl.string("title", 255).notNullable();
       tbl
         .integer("user_id")
         .unsigned()
@@ -27,6 +27,7 @@ exports.up = function(knex) {
         .inTable("users")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+      tbl.boolean("completed").notNullable();
       tbl.timestamps(true, true);
     });
 };
