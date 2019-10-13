@@ -12,25 +12,25 @@ export const MARK_TODO_COMPLETED_START = "MARK_TODO_COMPLETED_START";
 export const MARK_TODO_COMPLETED_SUCCESS = "MARK_TODO_COMPLETED_SUCCESS";
 export const MARK_TODO_COMPLETED_FAILURE = "MARK_TODO_COMPLETED_FAILURE";
 
-// action creators
-export const addNewTodo = todo => async dispatch => {
-  dispatch({ type: ADD_TODO_START });
+// // action creators
+// export const addNewTodo = todo => async dispatch => {
+//   dispatch({ type: ADD_TODO_START });
 
-  try {
-    const result = await axios.post("http://localhost:9100/api/todos/create", {
-      user_id: 1,
-      todo: todo
-    });
-    dispatch({ type: ADD_TODO_SUCCESS, payload: result });
-  } catch (err) {
-    console.log("error", err);
-    dispatch({ type: ADD_TODO_FAILURE });
-  }
-};
+//   try {
+//     const result = await axios.post("http://localhost:9100/api/todos/create", {
+//       user_id: 1,
+//       todo: todo
+//     });
+//     dispatch({ type: ADD_TODO_SUCCESS, payload: result });
+//   } catch (err) {
+//     console.log("error", err);
+//     dispatch({ type: ADD_TODO_FAILURE });
+//   }
+// };
 
-export const markTodoCompleted = todo => {
-  return {
-    type: MARK_TODO_COMPLETED_START,
-    payload: todo
-  };
-};
+// export const markTodoCompleted = todo => {
+//   return {
+//     type: MARK_TODO_COMPLETED_START,
+//     payload: todo
+//   };
+// };
