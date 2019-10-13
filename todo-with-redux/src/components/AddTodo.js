@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
 // actions
-import { addNewTodo } from "../actions";
+import { addNewTodo } from "../actionCreators/addTodo";
+import { fetchUserTodos } from "../actionCreators/userActions";
 
 // Material UI
 import FormControl from "@material-ui/core/FormControl";
@@ -26,25 +27,31 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddTodo = props => {
+const AddTodo = ({ userID, token, addNewTodo, fetchUserTodos }) => {
   const classes = useStyles();
   const [labelWidth, setLabelWidth] = useState(0);
   const labelRef = useRef(null);
   const [todoText, setTodoText] = useState("");
+  const [todoAdded, setTodoAdded] = useState(0);
 
   useEffect(() => {
     setLabelWidth(labelRef.current.offsetWidth);
   }, []);
 
+  useEffect(() => {
+    fetchUserTodos(userID, token);
+  }, [todoAdded]);
+
   const handleSubmit = e => {
     e.preventDefault();
-    props.addNewTodo(todoText);
+    addNewTodo(todoText, userID);
+    // increment count for use effect
+    setTodoAdded(todoAdded + 1);
     setTodoText("");
   };
-
+  console.log("TODO ADDED", todoAdded);
   return (
     <div>
-      <h1>Todo List</h1>
       <form onSubmit={handleSubmit}>
         <div className="todo-text-field">
           <FormControl variant="outlined">
@@ -82,5 +89,5 @@ const AddTodo = props => {
 
 export default connect(
   null,
-  { addNewTodo }
+  { addNewTodo, fetchUserTodos }
 )(AddTodo);
