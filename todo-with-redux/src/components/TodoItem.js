@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // actions
-import { markTodoCompleted } from "../actions";
+// import { markTodoCompleted } from "../actionCreators";
 
 // moment
 import Moment from "react-moment";
@@ -42,11 +42,14 @@ const TodoItem = ({ markTodoCompleted, todo }) => {
           >
             <Grid item xs={6}>
               <Typography className={classes.pos} color="textSecondary">
-                Created: <Moment fromNow>{todo.createdAt}</Moment>
+                Created: <Moment fromNow>{todo.created_at}</Moment>
               </Typography>
             </Grid>
             <Grid item xs={6} align="right">
-              <span class="hover-test" onClick={() => markTodoCompleted(todo)}>
+              <span
+                class="hover-test"
+                onClick={() => markTodoCompleted(todo.id)}
+              >
                 <CheckmarkIcon
                   classes={{ root: classes.icon }}
                   className="vertical-align-middle check-icon"
@@ -65,5 +68,5 @@ const TodoItem = ({ markTodoCompleted, todo }) => {
 
 export default connect(
   null,
-  { markTodoCompleted }
+  {}
 )(TodoItem);
