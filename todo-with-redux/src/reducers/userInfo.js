@@ -1,7 +1,10 @@
 import {
   LOGIN_USER_START,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILURE
+  LOGIN_USER_FAILURE,
+  FETCH_TODOS_START,
+  FETCH_TODOS_SUCCESS,
+  FETCH_TODOS_FAILURE
 } from "../actionCreators/userActions";
 
 const initialState = {
@@ -9,7 +12,7 @@ const initialState = {
   todos: [],
   isLoggingIn: false,
   isLoggedIn: false,
-  jwt: ""
+  fetchingTodos: false
 };
 
 const userInfo = (state = initialState, action) => {
@@ -18,8 +21,7 @@ const userInfo = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
-        isLoggedIn: false,
-        jwt: ""
+        isLoggedIn: false
       };
 
     case LOGIN_USER_SUCCESS:
@@ -28,6 +30,32 @@ const userInfo = (state = initialState, action) => {
         userAccount: { ...action.payload },
         isLoggingIn: false,
         isLoggedIn: true
+      };
+
+    case LOGIN_USER_FAILURE:
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: false
+      };
+
+    case FETCH_TODOS_START:
+      return {
+        ...state,
+        fetchingTodos: true
+      };
+
+    case FETCH_TODOS_SUCCESS:
+      return {
+        ...state,
+        todos: [...action.payload],
+        fetchingTodos: false
+      };
+
+    case FETCH_TODOS_FAILURE:
+      return {
+        ...state,
+        fetchingTodos: false
       };
     default:
       return state;

@@ -46,13 +46,22 @@ export const loginUser = (credentials, history) => async dispatch => {
   }
 };
 
-export const fetchUserTodos = id => async dispatch => {
+export const fetchUserTodos = (id, token) => async dispatch => {
   dispatch({ type: FETCH_TODOS_START });
 
   try {
-    const todos = await axios.get(`http://localhost:9100/api/todos/user/${id}`);
+    const todos = await axios.get(
+      `http://localhost:9100/api/todos/user/${id}`,
+      {
+        headers: {
+          authorization: token
+        }
+      }
+    );
 
-    dispatch({ type: FETCH_TODOS_SUCCESS, payload: todos });
+    console.log("FETCHED TODOS", todos);
+
+    dispatch({ type: FETCH_TODOS_SUCCESS, payload: todos.data });
   } catch (err) {
     console.log(err);
     dispatch({ type: FETCH_TODOS_FAILURE });
