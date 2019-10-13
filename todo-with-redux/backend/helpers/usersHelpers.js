@@ -14,7 +14,14 @@ function findById(id) {
     .first();
 }
 
+function findByUsername(username) {
+  return db("users")
+    .where({ username })
+    .first();
+}
+
 module.exports = {
   register,
-  findById
+  findById,
+  findByUsername
 };
