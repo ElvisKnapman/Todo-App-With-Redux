@@ -1,4 +1,5 @@
-.create-account-heading {
+.create-account-heading,
+.login-account-heading {
   margin: 0 0 2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgb(218, 218, 218);
@@ -27,7 +28,8 @@
     margin: 2rem 0 0.7rem;
   }
 
-  .firstName-lastName-container {
+  .firstName-lastName-container,
+  .username-password-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -40,7 +42,8 @@
     border: 1px solid rgb(179, 179, 179);
     border-radius: 3px;
     padding: 1rem;
-    font-weight: 500;
+    font-size: 1.4rem;
+    font-weight: 400;
     transition: 0.2s border;
 
     &:focus {
@@ -49,7 +52,8 @@
     }
   }
 
-  .register-btn-container {
+  .register-btn-container,
+  .login-btn-container {
     margin-top: 5rem;
     text-align: center;
   }
@@ -61,7 +65,8 @@
   background-color: transparent;
   cursor: pointer;
 
-  &.register-btn {
+  &.register-btn,
+  &.login-btn {
     border: 1px solid #39c;
     background-color: #39c;
     color: #fff;
