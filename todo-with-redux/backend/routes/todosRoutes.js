@@ -3,6 +3,9 @@ const router = require("express").Router();
 // import helpers
 const Todos = require("../helpers/todoHelpers");
 
+// middleware
+const mw = require("../middleware/validate");
+
 router.post("/create", async (req, res) => {
   const { body } = req;
 
@@ -17,7 +20,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/user/:id", async (req, res) => {
+router.get("/user/:id", mw.verifyToken, async (req, res) => {
   const { id } = req.params;
 
   try {
