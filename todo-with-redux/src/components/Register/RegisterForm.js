@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 // action creators
-import { registerUser } from "../../actionCreators/userActions";
+import { registerUser } from "../../actions/userActions";
 
 const RegisterForm = props => {
   const { registerUser, history } = props;
