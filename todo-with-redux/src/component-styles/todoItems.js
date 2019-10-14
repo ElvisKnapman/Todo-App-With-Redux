@@ -4,7 +4,8 @@ const useStyles = makeStyles(theme => ({
   card: {
     marginTop: "3rem",
     padding: "0",
-    minWidth: 275
+    minWidth: 275,
+    position: "relative"
   },
   title: {
     fontSize: "1.8rem",
