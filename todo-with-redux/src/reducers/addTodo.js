@@ -2,14 +2,15 @@
 import {
   ADD_TODO_START,
   ADD_TODO_SUCCESS,
-  ADD_TODO_FAILURE
+  ADD_TODO_FAILURE,
+  MARK_TODO_COMPLETED_START,
+  MARK_TODO_COMPLETED_SUCCESS,
+  MARK_TODO_COMPLETED_FAILURE
 } from "../actions/todoActions";
 
-// moment for timestamp
-import moment from "moment";
-
 const initialState = {
-  isAdding: false
+  isAdding: false,
+  isMarking: false
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -32,16 +33,23 @@ const todoReducer = (state = initialState, action) => {
         isAdding: false
       };
 
-    // case MARK_TODO_COMPLETED:
-    //   return {
-    //     ...state,
-    //     todos: state.todos.map(todo => {
-    //       if (todo.id === action.payload.id) {
-    //         return { ...todo, completed: true, completedAt: moment() };
-    //       }
-    //       return todo;
-    //     })
-    //   };
+    case MARK_TODO_COMPLETED_START:
+      return {
+        ...state,
+        isMarking: true
+      };
+
+    case MARK_TODO_COMPLETED_SUCCESS:
+      return {
+        ...state,
+        isMarking: false
+      };
+
+    case MARK_TODO_COMPLETED_FAILURE:
+      return {
+        ...state,
+        isMarking: false
+      };
 
     default:
       return state;
