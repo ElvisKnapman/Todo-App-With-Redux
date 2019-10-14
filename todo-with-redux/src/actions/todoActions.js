@@ -35,7 +35,7 @@ export const markTodoCompleted = (todo_id, user_id) => async dispatch => {
     const result = await axios.put(
       `http://localhost:9100/api/todos/completed/${todo_id}`
     );
-    await dispatch({ type: MARK_TODO_COMPLETED_SUCCESS });
+    await dispatch({ type: MARK_TODO_COMPLETED_SUCCESS, payload: result });
   } catch (err) {
     console.log(err);
     dispatch({ type: MARK_TODO_COMPLETED_FAILURE });
