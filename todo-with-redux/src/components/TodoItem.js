@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 // actions
-// import { markTodoCompleted } from "../actionCreators";
+import { markTodoCompleted } from "../actions/todoActions";
+import { fetchUserTodos } from "../actions/userActions";
 
 // moment
 import Moment from "react-moment";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 // Material UI
 import Card from "@material-ui/core/Card";
@@ -19,12 +23,20 @@ import { makeStyles } from "@material-ui/core";
 // Custom styles
 import useStyles from "../component-styles/todoItems";
 
-const TodoItem = ({ markTodoCompleted, todo }) => {
+const TodoItem = ({ markTodoCompleted, fetchUserTodos, todo, completed }) => {
   const classes = useStyles();
+  // increments whenever a todo is marked as complete, triggers useEffect
 
   return (
     <>
-      <Card className={classes.card}>
+      <Card
+        className={completed ? `${classes.card} todo-completed` : classes.card}
+      >
+        <FontAwesomeIcon
+          className={completed ? "completed-badge" : "completed-badge-hidden"}
+          icon={faCheckCircle}
+          size="2x"
+        />
         <CardContent classes={{ root: classes.cardContent }}>
           <Typography
             className={classes.title}
@@ -46,18 +58,24 @@ const TodoItem = ({ markTodoCompleted, todo }) => {
               </Typography>
             </Grid>
             <Grid item xs={6} align="right">
-              <span
-                class="hover-test"
-                onClick={() => markTodoCompleted(todo.id)}
-              >
-                <CheckmarkIcon
-                  classes={{ root: classes.icon }}
-                  className="vertical-align-middle check-icon"
-                />
-                <span className="vertical-align-middle mark-completed">
-                  Mark as Completed
-                </span>
-              </span>
+              {completed ? null : (
+                <>
+                  <span
+                    class="hover-test"
+                    onClick={() => {
+                      markTodoCompleted(todo.id, todo.user_id);
+                    }}
+                  >
+                    <CheckmarkIcon
+                      classes={{ root: classes.icon }}
+                      className="vertical-align-middle check-icon"
+                    />
+                    <span className="vertical-align-middle mark-completed">
+                      Mark as Completed
+                    </span>
+                  </span>
+                </>
+              )}
             </Grid>
           </Grid>
         </CardContent>
@@ -68,5 +86,5 @@ const TodoItem = ({ markTodoCompleted, todo }) => {
 
 export default connect(
   null,
-  {}
+  { markTodoCompleted, fetchUserTodos }
 )(TodoItem);
