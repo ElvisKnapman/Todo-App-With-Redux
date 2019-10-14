@@ -31,7 +31,13 @@ const RegisterForm = props => {
   const checkFields = () => {
     const { firstName, lastName, email, username, password } = user;
 
-    if (firstName && lastName && email && username && password) {
+    if (
+      firstName.trim() &&
+      lastName.trim() &&
+      email.trim() &&
+      username.trim() &&
+      password.trim()
+    ) {
       return true;
     }
     return false;
@@ -46,8 +52,17 @@ const RegisterForm = props => {
       setErrorMessage("All fields are required. Please try again.");
     } else {
       setCreateAccountClicked(true);
-      // call action creator
-      registerUser(user, history);
+      // call action creator, pass sanitized values
+      registerUser(
+        {
+          firstName: user.firstName.trim(),
+          lastName: user.lastName.trim(),
+          email: user.email.trim(),
+          username: user.username.trim(),
+          password: user.password.trim()
+        },
+        history
+      );
     }
   };
 
