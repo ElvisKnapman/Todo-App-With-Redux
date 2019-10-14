@@ -36,13 +36,15 @@ export const loginUser = (credentials, history) => async dispatch => {
       "http://localhost:9100/api/users/login",
       credentials
     );
-    console.log("LOG IN RESULT", result);
     dispatch({ type: LOGIN_USER_SUCCESS, payload: result.data.user });
     // redirect user to their home page after successfully logging in
     history.push("/home");
   } catch (err) {
-    console.log(err);
-    dispatch({ type: LOGIN_USER_FAILURE });
+    if (err.response.status === 401)
+      dispatch({
+        type: LOGIN_USER_FAILURE,
+        payload: "Invalid username or password. Please try again"
+      });
   }
 };
 
@@ -59,7 +61,11 @@ export const fetchUserTodos = (id, token) => async dispatch => {
       }
     );
 
-    console.log("FETCHED TODOS", todos);
+    // const todos = await axios.get(`http://localhost:9100/api/todos/user/1`, {
+    //   headers: {
+    //     authorization: token
+    //   }
+    // });
 
     dispatch({ type: FETCH_TODOS_SUCCESS, payload: todos.data });
   } catch (err) {
