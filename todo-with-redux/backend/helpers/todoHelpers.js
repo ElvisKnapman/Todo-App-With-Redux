@@ -27,8 +27,22 @@ function findByUser(id) {
     );
 }
 
+function updateTodo(id, updates) {
+  return findById(id).then(todo => {
+    if (todo) {
+      return db("todos")
+        .update(updates, "id")
+        .where({ id })
+        .then(([id]) => findById(id));
+    } else {
+      return todo;
+    }
+  });
+}
+
 module.exports = {
   createTodo,
   findById,
-  findByUser
+  findByUser,
+  updateTodo
 };

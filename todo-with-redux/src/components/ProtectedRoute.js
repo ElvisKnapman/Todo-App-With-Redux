@@ -8,7 +8,6 @@ const ProtectedRoute = ({
   component: Component,
   ...rest
 }) => {
-  console.log("USER TOKEN", userToken);
   return (
     <Route
       {...rest}

@@ -12,7 +12,8 @@ const initialState = {
   todos: [],
   isLoggingIn: false,
   isLoggedIn: false,
-  fetchingTodos: false
+  fetchingTodos: false,
+  loginError: ""
 };
 
 const userInfo = (state = initialState, action) => {
@@ -21,7 +22,8 @@ const userInfo = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
-        isLoggedIn: false
+        isLoggedIn: false,
+        loginError: ""
       };
 
     case LOGIN_USER_SUCCESS:
@@ -36,7 +38,8 @@ const userInfo = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
-        isLoggedIn: false
+        isLoggedIn: false,
+        loginError: action.payload
       };
 
     case FETCH_TODOS_START:

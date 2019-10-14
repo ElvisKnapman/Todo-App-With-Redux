@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // CSS
 import "./sass/index.scss";
@@ -21,7 +21,7 @@ function App() {
       <Switch>
         <Route path="/register" component={RegisterForm} />
         <Route path="/login" component={LoginForm} />
-
+        {/* <Route path="/home" component={UserHomepage} /> */}
         <ProtectedRoute
           path="/home"
           redirect="/login"

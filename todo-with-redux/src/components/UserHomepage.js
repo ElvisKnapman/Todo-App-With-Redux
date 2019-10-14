@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 // Components
 import AddTodo from "./AddTodo";
 import DisplayTodos from "./DisplayTodos";
-import DisplayCompletedTodos from "./CompletedTodos/DisplayCompletedTodos";
 
 // action creators
 import { fetchUserTodos } from "../actions/userActions";
@@ -16,7 +15,6 @@ import {
   makeStyles
 } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -37,15 +35,12 @@ const useStyles = makeStyles(theme => ({
 
 const UserHomepage = props => {
   const { id, username, firstName, lastName, email, token } = props.user;
-  const { todos, fetchUserTodos } = props;
+  const { todos, fetchUserTodos, isAdding, isMarking } = props;
   const classes = useStyles();
 
   useEffect(() => {
-    console.log("in use effect");
     fetchUserTodos(id, token);
-  }, [id]);
-
-  console.log("PROPS", props);
+  }, [isAdding, isMarking]);
 
   return (
     <>
@@ -55,15 +50,8 @@ const UserHomepage = props => {
             <h1>Todo List for {firstName}</h1>
             <AddTodo userID={id} token={token} />
           </div>
-          <Container classes={{ root: classes.container }} maxWidth="md">
-            <Grid container spacing={4}>
-              <Grid item xs={6}>
-                <DisplayTodos todos={todos} />
-              </Grid>
-              <Grid item xs={6}>
-                <DisplayCompletedTodos />
-              </Grid>
-            </Grid>
+          <Container classes={{ root: classes.container }} maxWidth="sm">
+            <DisplayTodos todos={todos} />
           </Container>
         </div>
       </MuiThemeProvider>
@@ -74,7 +62,9 @@ const UserHomepage = props => {
 const mapStateToProps = state => {
   return {
     user: state.userInfo.userAccount,
-    todos: state.userInfo.todos
+    todos: state.userInfo.todos,
+    isAdding: state.addTodo.isAdding,
+    isMarking: state.addTodo.isMarking
   };
 };
 

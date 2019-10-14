@@ -67,6 +67,7 @@
 
   &.register-btn,
   &.login-btn {
+    outline: none;
     border: 1px solid #39c;
     background-color: #39c;
     color: #fff;
@@ -75,7 +76,8 @@
     letter-spacing: 1px;
     font-family: "Roboto";
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    min-width: 11rem;
     &:hover {
       background-color: transparent;
       color: #39c;
