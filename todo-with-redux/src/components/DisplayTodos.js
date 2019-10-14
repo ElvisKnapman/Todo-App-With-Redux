@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 // Material UI
 import Paper from "@material-ui/core/Paper";
@@ -29,7 +28,9 @@ const DisplayTodos = ({ todos }) => {
       </Paper>
       {todos.length > 0 ? (
         todos.map(todo => {
-          return <TodoItem key={todo.id} todo={todo} />;
+          return (
+            <TodoItem key={todo.id} todo={todo} completed={todo.completed} />
+          );
         })
       ) : (
         <p>You currently have no items in your todo list.</p>
@@ -38,14 +39,4 @@ const DisplayTodos = ({ todos }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    // pull out incomplete todos
-    todos: state.todos.filter(todo => !todo.completed)
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {}
-)(DisplayTodos);
+export default DisplayTodos;
