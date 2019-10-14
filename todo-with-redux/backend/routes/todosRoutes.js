@@ -35,7 +35,7 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
+router.put("/edit/:id", async (req, res) => {
   const { id } = req.params;
   const { body } = req;
 
@@ -46,7 +46,7 @@ router.post("/:id", async (req, res) => {
       res.status(200).json(result);
     } else {
       res
-        .status(401)
+        .status(400)
         .json({ message: "Could not update todo. Please check your request." });
     }
   } catch (err) {
@@ -54,6 +54,25 @@ router.post("/:id", async (req, res) => {
     res
       .status(500)
       .json({ message: "Server encountered error trying to update todo item" });
+  }
+});
+
+router.put("/completed/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await Todos.updateTodo(id, { completed: true });
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(400).json({
+        message: "Could not mark todo as completed. Please check your request."
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Server encountered error trying to flag todo as completed"
+    });
   }
 });
 
