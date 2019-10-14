@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 // Components
 import AddTodo from "./AddTodo";
 import DisplayTodos from "./DisplayTodos";
-import DisplayCompletedTodos from "./CompletedTodos/DisplayCompletedTodos";
 
 // action creators
 import { fetchUserTodos } from "../actions/userActions";
@@ -16,7 +15,6 @@ import {
   makeStyles
 } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -41,11 +39,8 @@ const UserHomepage = props => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log("in use effect");
     fetchUserTodos(id, token);
   }, [isAdding, isMarking]);
-
-  console.log("PROPS", props);
 
   return (
     <>

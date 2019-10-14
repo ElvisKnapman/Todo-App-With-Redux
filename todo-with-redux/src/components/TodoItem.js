@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 // actions
@@ -17,8 +17,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CheckmarkIcon from "@material-ui/icons/Beenhere";
 import Grid from "@material-ui/core/Grid";
-
-import { makeStyles } from "@material-ui/core";
 
 // Custom styles
 import useStyles from "../component-styles/todoItems";
