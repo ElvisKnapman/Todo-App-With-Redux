@@ -49,7 +49,6 @@ const AddTodo = ({ userID, token, addNewTodo, fetchUserTodos }) => {
     setTodoAdded(todoAdded + 1);
     setTodoText("");
   };
-  console.log("TODO ADDED", todoAdded);
   return (
     <div>
       <form onSubmit={handleSubmit}>
