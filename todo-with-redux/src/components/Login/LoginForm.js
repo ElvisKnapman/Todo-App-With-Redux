@@ -8,7 +8,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { loginUser } from "../../actions/userActions";
 
 const LoginForm = props => {
-  const { loginUser, history } = props;
+  const { loginUser, history, loginError } = props;
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -30,7 +30,8 @@ const LoginForm = props => {
   const handleChange = e => {
     setCredentials({
       ...credentials,
-      [e.target.name]: e.target.value
+      // don't allow extra white space -- trim()
+      [e.target.name]: e.target.value.trim()
     });
   };
 
@@ -54,8 +55,11 @@ const LoginForm = props => {
         <div className="reg-form-wrapper">
           <div className="form-inner-content-wrapper">
             <h2 className="login-account-heading">Login</h2>
+            {/* nested ternary to display appropriate error (client side or server side)*/}
             {errorMessage ? (
               <p className="error-message">{errorMessage}</p>
+            ) : loginError ? (
+              <p className="error-message">{loginError}</p>
             ) : null}
             <div className="username-password-container">
               <div>
@@ -83,7 +87,10 @@ const LoginForm = props => {
             </div>
             <div className="btns">
               <div className="login-btn-container">
-                {!loginClicked ? (
+                {/* if login button was NOT clicked, login button will be visible
+                -->> *OR* if there was an error (client or server side),
+                the spinner will disappear and the login button will be visible again */}
+                {!loginClicked || loginError ? (
                   <button className="btn login-btn" type="submit">
                     Login
                   </button>
@@ -104,7 +111,13 @@ const LoginForm = props => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    loginError: state.userInfo.loginError
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { loginUser }
 )(LoginForm);
