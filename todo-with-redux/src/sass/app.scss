@@ -130,13 +130,31 @@ h1 {
 }
 
 .completed-badge {
-  position: absolute;
-  top: 0.5rem;
+  bottom: 0.5rem;
   right: 1rem;
-  z-index: 1000;
   color: rgb(7, 136, 7);
+  font-size: 2rem;
 }
 
 .completed-badge-hidden {
   display: none;
+}
+
+.completed-badge,
+.trash-icon {
+  outline: none;
+  position: absolute;
+  font-size: 2rem;
+}
+
+.trash-icon {
+  color: rgb(194, 6, 6);
+  top: 0.5rem;
+  right: 1rem;
+  transition: color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(245, 0, 0);
+  }
 }
