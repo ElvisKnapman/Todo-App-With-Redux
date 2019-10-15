@@ -40,9 +40,19 @@ function updateTodo(id, updates) {
   });
 }
 
+function deleteTodo(id) {
+  return db("todos")
+    .delete()
+    .where({ id })
+    .then(res => {
+      return res;
+    });
+}
+
 module.exports = {
   createTodo,
   findById,
   findByUser,
-  updateTodo
+  updateTodo,
+  deleteTodo
 };

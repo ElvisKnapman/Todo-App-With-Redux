@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 // actions
-import { markTodoCompleted } from "../actions/todoActions";
+import { markTodoCompleted, deleteTodo } from "../actions/todoActions";
 import { fetchUserTodos } from "../actions/userActions";
+
+// components
+import Modal from "./Modal";
 
 // moment
 import Moment from "react-moment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 // Material UI
 import Card from "@material-ui/core/Card";
@@ -21,9 +24,14 @@ import Grid from "@material-ui/core/Grid";
 // Custom styles
 import useStyles from "../component-styles/todoItems";
 
-const TodoItem = ({ markTodoCompleted, fetchUserTodos, todo, completed }) => {
+const TodoItem = ({
+  markTodoCompleted,
+  deleteTodo,
+  fetchUserTodos,
+  todo,
+  completed
+}) => {
   const classes = useStyles();
-  // increments whenever a todo is marked as complete, triggers useEffect
 
   return (
     <>
@@ -34,6 +42,12 @@ const TodoItem = ({ markTodoCompleted, fetchUserTodos, todo, completed }) => {
           className={completed ? "completed-badge" : "completed-badge-hidden"}
           icon={faCheckCircle}
           size="2x"
+        />
+        <FontAwesomeIcon
+          className="trash-icon"
+          icon={faTrashAlt}
+          size="2x"
+          onClick={() => deleteTodo(todo.id)}
         />
         <CardContent classes={{ root: classes.cardContent }}>
           <Typography
@@ -59,7 +73,7 @@ const TodoItem = ({ markTodoCompleted, fetchUserTodos, todo, completed }) => {
               {completed ? null : (
                 <>
                   <span
-                    class="hover-test"
+                    className="hover-test"
                     onClick={() => {
                       markTodoCompleted(todo.id, todo.user_id);
                     }}
@@ -84,5 +98,5 @@ const TodoItem = ({ markTodoCompleted, fetchUserTodos, todo, completed }) => {
 
 export default connect(
   null,
-  { markTodoCompleted, fetchUserTodos }
+  { markTodoCompleted, deleteTodo, fetchUserTodos }
 )(TodoItem);

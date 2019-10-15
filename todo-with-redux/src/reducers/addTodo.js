@@ -5,12 +5,16 @@ import {
   ADD_TODO_FAILURE,
   MARK_TODO_COMPLETED_START,
   MARK_TODO_COMPLETED_SUCCESS,
-  MARK_TODO_COMPLETED_FAILURE
+  MARK_TODO_COMPLETED_FAILURE,
+  DELETE_TODO_START,
+  DELETE_TODO_SUCCESS,
+  DELETE_TODO_FAILURE
 } from "../actions/todoActions";
 
 const initialState = {
   isAdding: false,
-  isMarking: false
+  isMarking: false,
+  isDeleting: false
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -49,6 +53,24 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         isMarking: false
+      };
+
+    case DELETE_TODO_START:
+      return {
+        ...state,
+        isDeleting: true
+      };
+
+    case DELETE_TODO_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+
+    case DELETE_TODO_FAILURE:
+      return {
+        ...state,
+        isDeleting: false
       };
 
     default:

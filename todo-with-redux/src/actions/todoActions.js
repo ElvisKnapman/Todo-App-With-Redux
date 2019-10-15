@@ -41,3 +41,17 @@ export const markTodoCompleted = (todo_id, user_id) => async dispatch => {
     dispatch({ type: MARK_TODO_COMPLETED_FAILURE });
   }
 };
+
+export const deleteTodo = todoId => async dispatch => {
+  dispatch({ type: DELETE_TODO_START });
+
+  try {
+    const result = await axios.delete(
+      `http://localhost:9100/api/todos/delete/${todoId}`
+    );
+    dispatch({ type: DELETE_TODO_SUCCESS });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: DELETE_TODO_FAILURE });
+  }
+};
