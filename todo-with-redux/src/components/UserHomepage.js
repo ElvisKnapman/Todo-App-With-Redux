@@ -35,12 +35,13 @@ const useStyles = makeStyles(theme => ({
 
 const UserHomepage = props => {
   const { id, username, firstName, lastName, email, token } = props.user;
-  const { todos, fetchUserTodos, isAdding, isMarking } = props;
+  const { todos, fetchUserTodos, isAdding, isMarking, isDeleting } = props;
+
   const classes = useStyles();
 
   useEffect(() => {
     fetchUserTodos(id, token);
-  }, [isAdding, isMarking]);
+  }, [isAdding, isMarking, isDeleting]);
 
   return (
     <>
@@ -64,7 +65,8 @@ const mapStateToProps = state => {
     user: state.userInfo.userAccount,
     todos: state.userInfo.todos,
     isAdding: state.addTodo.isAdding,
-    isMarking: state.addTodo.isMarking
+    isMarking: state.addTodo.isMarking,
+    isDeleting: state.addTodo.isDeleting
   };
 };
 
