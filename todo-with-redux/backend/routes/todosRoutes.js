@@ -76,4 +76,18 @@ router.put("/completed/:id", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await Todos.deleteTodo(id);
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: "Server encountered error trying to delete the todo" });
+  }
+});
+
 module.exports = router;
